@@ -1,38 +1,33 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Pokemon } from "../types/Pokemon";
 
-const usePokemon = (pokemonName: string) => {
+const usePokemon = () => {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const fetchPokemon = async (pokemonName: string) => {
     if (!pokemonName) return;
+    setLoading(true);
+    setError(null);
 
-    const fetchPokemon = async () => {
-      setLoading(true);
-      setError(null);
+    try {
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`
+      );
+      if (!response.ok) throw new Error("Pokémon no encontrado");
 
-      try {
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`
-        );
-        if (!response.ok) throw new Error("Pokémon no encontrado");
+      const data: Pokemon = await response.json();
+      setPokemon(data);
+    } catch (err) {
+      setError((err as Error).message);
+      setPokemon(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        const data: Pokemon = await response.json();
-        setPokemon(data);
-      } catch (err) {
-        setError((err as Error).message);
-        setPokemon(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPokemon();
-  }, [pokemonName]);
-
-  return { pokemon, loading, error };
+  return { pokemon, fetchPokemon, loading, error };
 };
 
 export default usePokemon;
