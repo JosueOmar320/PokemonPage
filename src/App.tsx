@@ -41,8 +41,9 @@ function App() {
           }}
           sx={{ width: "70%" }}
         />
+        <p>test 2</p>
         <Button onClick={clickSearch} variant="contained" color="primary">
-          search
+          Search
         </Button>
       </Grid2>
       <Box mt={2}>
