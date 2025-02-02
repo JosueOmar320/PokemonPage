@@ -41,7 +41,6 @@ function App() {
           }}
           sx={{ width: "70%" }}
         />
-        <p>test 2</p>
         <Button onClick={clickSearch} variant="contained" color="primary">
           Search
         </Button>
