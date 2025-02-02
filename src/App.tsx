@@ -33,7 +33,7 @@ function App() {
         alignItems={"center"}
       >
         <TextField
-          label="pokemon name"
+          label="Pokemon Name"
           name="pokemonName"
           value={pokemonName}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
