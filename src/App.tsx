@@ -1,22 +1,11 @@
-import { Box, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Box, CircularProgress, TextField, Typography } from "@mui/material";
+import { useState } from "react";
 import PokeCard from "./components/PokeCard";
-import { Pokemon } from "./types/Pokemon";
+import usePokemon from "./hooks/usePokemon";
 
 function App() {
   const [pokemonName, setPokemonName] = useState("");
-  const [pokeInfo, setPokeInfo] = useState<Pokemon | null>(null);
-  //test
-  useEffect(() => {
-    if (pokemonName) {
-      fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonName)
-        .then((response) => response.json())
-        .then((data) => setPokeInfo(data))
-        .catch(() => {
-          setPokeInfo(null);
-        });
-    }
-  }, [pokemonName]);
+  const { pokemon, loading, error } = usePokemon(pokemonName);
 
   const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPokemonName(event.target.value);
@@ -29,12 +18,12 @@ function App() {
         name="pokemonName"
         value={pokemonName}
         onChange={changeName}
+        fullWidth
       />
-      {pokeInfo && (
-        <Box>
-          <PokeCard pokemon={pokeInfo} />
-        </Box>
-      )}
+      {loading && <CircularProgress />}
+      {error && <Typography color="error">{error}</Typography>}
+
+      {pokemon && <PokeCard pokemon={pokemon} />}
       {/* <Button type="submit" variant="contained" color="primary">
         search
       </Button> */}
