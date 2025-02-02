@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [pokemonName, setPokemonName] = useState("");
   const [pokeInfo, setPokeInfo] = useState<any>(null);
-
+  //test
   useEffect(() => {
     if (pokemonName) {
       fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonName)
