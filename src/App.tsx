@@ -1,9 +1,11 @@
 import { Box, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
+import PokeCard from "./components/PokeCard";
+import { Pokemon } from "./types/Pokemon";
 
 function App() {
   const [pokemonName, setPokemonName] = useState("");
-  const [pokeInfo, setPokeInfo] = useState<any>(null);
+  const [pokeInfo, setPokeInfo] = useState<Pokemon | null>(null);
   //test
   useEffect(() => {
     if (pokemonName) {
@@ -30,9 +32,7 @@ function App() {
       />
       {pokeInfo && (
         <Box>
-          <h2>{pokeInfo.name}</h2>
-          <img src={pokeInfo.sprites.front_default} alt={pokeInfo.name} />
-          {/* Puedes agregar más detalles si lo deseas */}
+          <PokeCard pokemon={pokeInfo} />
         </Box>
       )}
       {/* <Button type="submit" variant="contained" color="primary">
