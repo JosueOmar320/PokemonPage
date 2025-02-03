@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   CircularProgress,
   Grid2,
   TextField,
@@ -13,16 +12,12 @@ import usePokemonList from "./hooks/usePokemonList";
 
 function App() {
   const [pokemonName, setPokemonName] = useState("");
-  const { pokemon, fetchPokemon, loading, error } = usePokemon();
+  const { pokemon, fetchPokemon, loading, error, setPokemon } = usePokemon();
   const { pokemonList, fetchPokemonList } = usePokemonList();
 
   useEffect(() => {
     fetchPokemonList();
   }, []);
-
-  const clickSearch = () => {
-    fetchPokemon(pokemonName);
-  };
 
   return (
     <Box>
@@ -38,12 +33,13 @@ function App() {
           value={pokemonName}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setPokemonName(event.target.value);
+            fetchPokemon(event.target.value);
+            if (event.target.value == "") {
+              setPokemon(null);
+            }
           }}
           sx={{ width: "70%" }}
         />
-        <Button onClick={clickSearch} variant="contained" color="primary">
-          Search
-        </Button>
       </Grid2>
       <Box mt={2}>
         <Grid2

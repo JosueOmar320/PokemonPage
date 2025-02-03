@@ -7,9 +7,9 @@ const usePokemon = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchPokemon = async (pokemonName: string) => {
+    setError(null);
     if (!pokemonName) return;
     setLoading(true);
-    setError(null);
 
     try {
       const response = await fetch(
@@ -27,7 +27,7 @@ const usePokemon = () => {
     }
   };
 
-  return { pokemon, fetchPokemon, loading, error };
+  return { pokemon, fetchPokemon, loading, error, setPokemon };
 };
 
 export default usePokemon;
