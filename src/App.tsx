@@ -1,68 +1,8 @@
-import {
-  Box,
-  CircularProgress,
-  Grid2,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { useEffect, useState } from "react";
-import PokeCard from "./components/PokeCard";
-import usePokemon from "./hooks/usePokemon";
-import usePokemonList from "./hooks/usePokemonList";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes/AppRoutes";
 
-function App() {
-  const [pokemonName, setPokemonName] = useState("");
-  const { pokemon, fetchPokemon, loading, error, setPokemon } = usePokemon();
-  const { pokemonList, fetchPokemonList } = usePokemonList();
-
-  useEffect(() => {
-    fetchPokemonList();
-  }, []);
-
-  return (
-    <Box>
-      <Grid2
-        container
-        spacing={2}
-        justifyContent={"center"}
-        alignItems={"center"}
-      >
-        <TextField
-          label="Pokemon Name"
-          name="pokemonName"
-          value={pokemonName}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setPokemonName(event.target.value);
-            fetchPokemon(event.target.value);
-            if (event.target.value == "") {
-              setPokemon(null);
-            }
-          }}
-          sx={{ width: "70%" }}
-        />
-      </Grid2>
-      <Box mt={2}>
-        <Grid2
-          container
-          spacing={2}
-          justifyContent={"center"}
-          alignItems={"center"}
-        >
-          {loading && <CircularProgress />}
-
-          {error && <Typography color="error">{error}</Typography>}
-
-          {pokemon && <PokeCard pokemon={pokemon} />}
-
-          {pokemonList.length > 0 &&
-            !pokemonName &&
-            pokemonList.map((pokemons) => {
-              return <PokeCard pokemon={pokemons} />;
-            })}
-        </Grid2>
-      </Box>
-    </Box>
-  );
-}
+const App = () => {
+  return <RouterProvider router={router} />;
+};
 
 export default App;

@@ -10,7 +10,7 @@ const usePokemonList = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon?limit=20"
+        "https://pokeapi.co/api/v2/pokemon?limit=151"
       );
       if (!response.ok) throw new Error("Error al obtener la lista de Pokémon");
 
