@@ -29,7 +29,7 @@ const HomePage = () => {
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [pokemonName, fetchPokemon, setPokemon]);
+  }, [pokemonName, setPokemon]);
 
   return (
     <Box>
