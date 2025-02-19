@@ -37,9 +37,7 @@ const PokemonDetails = () => {
         borderRadius: 3,
       }}
     >
-      {/* Contenedor principal con Grid2 */}
       <Grid2 container spacing={3} justifyContent="center">
-        {/* Imagen Normal */}
         <Grid2 display="flex" flexDirection="column" alignItems="center">
           <Typography variant="subtitle1">Normal</Typography>
           <CardMedia
@@ -55,7 +53,6 @@ const PokemonDetails = () => {
           />
         </Grid2>
 
-        {/* Imagen Shiny */}
         <Grid2 display="flex" flexDirection="column" alignItems="center">
           <Typography variant="subtitle1">Shiny ✨</Typography>
           <CardMedia
@@ -73,7 +70,6 @@ const PokemonDetails = () => {
       </Grid2>
 
       <CardContent>
-        {/* Nombre y Número */}
         <Typography
           variant="h4"
           textAlign="center"
@@ -91,7 +87,6 @@ const PokemonDetails = () => {
 
         <Divider sx={{ my: 2 }} />
 
-        {/* Tipos */}
         <Typography variant="h6" sx={{ mb: 1 }}>
           Tipos:
         </Typography>
@@ -105,7 +100,6 @@ const PokemonDetails = () => {
 
         <Divider sx={{ my: 2 }} />
 
-        {/* Altura y Peso */}
         <Grid2 container spacing={2} justifyContent="space-between">
           <Grid2>
             <Typography variant="body1">
@@ -121,7 +115,6 @@ const PokemonDetails = () => {
 
         <Divider sx={{ my: 2 }} />
 
-        {/* Habilidades */}
         <Typography variant="h6" sx={{ mb: 1 }}>
           Habilidades:
         </Typography>
@@ -137,7 +130,6 @@ const PokemonDetails = () => {
 
         <Divider sx={{ my: 2 }} />
 
-        {/* Estadísticas Base */}
         <Typography variant="h6" sx={{ mb: 1 }}>
           Estadísticas Base:
         </Typography>
